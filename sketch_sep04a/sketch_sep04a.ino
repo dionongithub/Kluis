@@ -1,5 +1,9 @@
 #include <Keypad.h>
-String pass = "1111";
+#define beep A2
+#define red 11
+#define green 10
+
+String pass = "1999";
 String input = "";
 bool unlocked = false;
 
@@ -19,10 +23,10 @@ Keypad keypad = Keypad( makeKeymap(keys), rowPins, colPins, ROWS, COLS );
 
 void setup(){
   Serial.begin(9600);
-  pinMode(10, OUTPUT);                      //green light
-  pinMode(11, OUTPUT);                      //red light
+  pinMode(green, OUTPUT);                      //green light
+  pinMode(red, OUTPUT);                      //red light
   pinMode(12, OUTPUT);                      //lock
-  pinMode(13, OUTPUT);
+  pinMode(beep, OUTPUT);
 }
 
 void loop(){
@@ -43,12 +47,12 @@ void loop(){
       }else{                                  //false pass
         
         Serial.println("Wrong Pass!");
-        digitalWrite(11, HIGH);
-        digitalWrite(13, HIGH);
+        digitalWrite(red, HIGH);
+        digitalWrite(beep, HIGH);
         delay(1000);
-        digitalWrite(13, LOW);
+        digitalWrite(beep, LOW);
         delay(1000);
-        digitalWrite(11, LOW);
+        digitalWrite(red, LOW);
         input = "";
         
       }
@@ -61,23 +65,23 @@ void loop(){
       if(pass == input){
         
         Serial.println("Unlocked!");
-        digitalWrite(10, HIGH);
+        digitalWrite(green, HIGH);
         digitalWrite(12, HIGH);
-        digitalWrite(13, HIGH);
+        digitalWrite(beep, HIGH);
         delay(50);
-        digitalWrite(13, LOW);
+        digitalWrite(beep, LOW);
         delay(50);
-        digitalWrite(13, HIGH);
+        digitalWrite(beep, HIGH);
         delay(50);
-        digitalWrite(13, LOW);
+        digitalWrite(beep, LOW);
         delay(50);
-        digitalWrite(13, HIGH);
+        digitalWrite(beep, HIGH);
         delay(50);
-        digitalWrite(13, LOW);
+        digitalWrite(beep, LOW);
         delay(2750);
         unlocked = false;
         Serial.println("Locked!");
-        digitalWrite(10, LOW);
+        digitalWrite(green, LOW);
         digitalWrite(12, LOW);
         input = "";
       }
@@ -87,23 +91,23 @@ void loop(){
     if(unlocked){
 
         Serial.println("Unlocked!");
-        digitalWrite(10, HIGH);
+        digitalWrite(green, HIGH);
         digitalWrite(12, HIGH);
-        digitalWrite(13, HIGH);
+        digitalWrite(beep, HIGH);
         delay(50);
-        digitalWrite(13, LOW);
+        digitalWrite(beep, LOW);
         delay(50);
-        digitalWrite(13, HIGH);
+        digitalWrite(beep, HIGH);
         delay(50);
-        digitalWrite(13, LOW);
+        digitalWrite(beep, LOW);
         delay(50);
-        digitalWrite(13, HIGH);
+        digitalWrite(beep, HIGH);
         delay(50);
-        digitalWrite(13, LOW);
+        digitalWrite(beep, LOW);
         delay(2750);
         unlocked = false;
         Serial.println("Locked!");
-        digitalWrite(10, LOW);
+        digitalWrite(green, LOW);
         digitalWrite(12, LOW);
         input = "";
     }
