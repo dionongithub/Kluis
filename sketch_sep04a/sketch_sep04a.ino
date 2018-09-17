@@ -3,6 +3,7 @@
 #define red 11
 #define green 10
 
+// You have a Nice password Mitch.
 String pass = "1999";
 String input = "";
 bool unlocked = false;
